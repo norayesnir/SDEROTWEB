@@ -45,8 +45,7 @@ export default defineNuxtConfig({
 
 
     alias: {
-        "#payload": resolve(__dirname, "../sderot-cms/src"),
-        "#payload/types": resolve(__dirname, "../sderot-cms/src/payload-types.ts"),
+        "#payload/types": resolve(__dirname, "./payload-types.ts"),
     },
 
     runtimeConfig: {
