@@ -1,25 +1,27 @@
 <script setup lang="ts">
-import type { Page } from '#payload/types'
+const route = useRoute();
+const slug = computed(() => {
+    const raw = route.params.slug
+    return Array.isArray(raw) ? raw.join('/') : raw;
+})
 
-const route = useRoute()
-const slug  = computed(() => route.params.slug as string)
+const { pages, pending } = await usePages();
 
-const { data } = useCollection<Page[]>('pages', { depth: 2 })
-const pages = computed(() => unref(data)?.docs || [])
+const currentPage = computed(() => pages.value?.filter(p => p.slug === slug.value)?.[0]);
 
-const currentPage = computed(() =>
-  pages.value.find(p => p.slug === slug.value)
-)
-
-const fields = computed(() => currentPage.value?.fields)
-
-const blocks = computed(() => fields.value?.blocks || [])
+const blocks = computed(() => slug.value === 'nieuws' || slug.value === 'projecten' ? currentPage.value?.archive.blocks : currentPage.value?.fields.blocks);
 </script>
 
 <template>
     <div>
-        <template v-for="(block, blockIndex) in blocks" :key="blockIndex">
-            <component :is="`blocks-${block.blockType}`" v-if="block.id" :key="block.id" :data="block" />
+        <template v-if="!pending">
+            <template v-for="block in blocks" :key="block?.id">
+                <component :is="`blocks-${block?.blockType}`" :data="block" />
+            </template>
         </template>
+        <div v-else class="container">Loading...</div>
+
+        <OrganismsArticles v-if="slug === 'nieuws'" />
+        <OrganismsProjects v-if="slug === 'projecten'" />
     </div>
 </template>

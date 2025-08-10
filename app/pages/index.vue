@@ -1,22 +1,18 @@
 <script setup lang="ts">
-import type { Page } from "#payload/types";
+const { pages, pending } = await usePages();
 
-interface CollectionResponse<T> {
-    docs: T[];
-}
+const currentPage = computed(() => pages.value?.filter(p => p.slug === 'home')?.[0]);
 
-const { data } = useCollection<CollectionResponse<Page>>('pages', { id: 1 })
-
-const fields = computed(() => data.value?.fields)
-const blocks = computed(() => fields.value?.blocks)
+const blocks = computed(() => currentPage.value?.fields.blocks);
 </script>
 
 <template>
     <div>
-        <template v-if="blocks && blocks.length">
+        <template v-if="!pending">
             <template v-for="block in blocks" :key="block?.id">
                 <component :is="`blocks-${block?.blockType}`" :data="block" />
             </template>
         </template>
+        <div v-else class="container">Loading...</div>
     </div>
 </template>

@@ -21,7 +21,6 @@ const to = computed(() => { return props.item.referenceToPage.route === '/home' 
 
   <NuxtLink
     v-else-if="item.referenceToPage.route"
-    prefetch
     class="flex gap-1 px-2 py-1 w-fit transition-colors duration-200 text-font font-normal border-black hover:pb-[2px] hover:border-b-2 has-[.router-link-active]:border-b-1 has-[.router-link-active]:pb-[2px]"
     :to="to"
     @click="[closeExpand, navigationMenuStore.close()]"
