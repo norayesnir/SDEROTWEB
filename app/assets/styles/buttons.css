@@ -1,0 +1,53 @@
+.btn {
+  @apply flex gap-2 px-3 pb-1 pt-[5px] font-bold rounded cursor-pointer w-fit;
+}
+
+/* Color variants */
+.btn-primary {
+  --btn-color: theme(colors.primary.DEFAULT);
+  --btn-color-dark: theme(colors.primary.dark);
+}
+
+.btn-secondary {
+  --btn-color: theme(colors.secondary.DEFAULT);
+  --btn-color-dark: theme(colors.secondary.dark);
+}
+
+.btn-tertiary {
+  --btn-color: theme(colors.tertiary.DEFAULT);
+  --btn-color-dark: theme(colors.tertiary.dark);
+}
+
+/* Type variants */
+.btn-filled {
+  @apply text-white;
+  background-color: var(--btn-color);
+}
+.btn-filled:hover {
+  background-color: var(--btn-color-dark);
+}
+
+.btn-outlined {
+  @apply border-2 text-[color:var(--btn-color)] border-[color:var(--btn-color)];
+}
+.btn-outlined:hover {
+  @apply text-white;
+  background-color: var(--btn-color);
+}
+
+.btn-link {
+  @apply rounded-none border-b-2 pb-[2px];
+  color: var(--btn-color);
+}
+.btn-link:hover {
+  color: var(--btn-color-dark);
+  border-color: var(--btn-color);
+}
+
+.btn-ghost {
+  color: var(--btn-color);
+}
+.btn-ghost:hover {
+  background-color: var(--btn-color);
+  @apply text-white;
+}

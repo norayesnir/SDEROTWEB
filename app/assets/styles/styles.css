@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Poppins:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=home,palette,settings&display=block");
+@import 'tailwindcss';
+@import './buttons';
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  src: url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=home,palette,settings&display=block) format('woff');
+}
+
+@theme {
+    /* Breakpoint */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 878px;
+    --breakpoint-xl: 997px;
+    --breakpoint-2xl: 1116px;
+
+
+    /* Fonts */
+    --font-heading: 'Red Hat Text';
+    --font-body: 'Red Hat Text';
+    --font-icon: 'Material Symbols Outlined';
+
+    /* Font sizes */
+    --font-subtitle: 1rem;
+    --leading-subtitle: 1.5rem;
+    --weight-subtitle: 700;
+
+    --font-h1: 3rem;
+    --leading-h1: 4rem;
+    --weight-h1: 700;
+
+    --font-h2: 2.5rem;
+    --leading-h2: 3rem;
+    --weight-h2: 700;
+
+    --font-h3: 2rem;
+    --leading-h3: 2.5rem;
+    --weight-h3: 700;
+
+    --font-h4: 1.5rem;
+    --leading-h4: 1.5rem;
+    --weight-h4: 700;
+
+    --font-h5: 1.25rem;
+    --leading-h5: 1.5rem;
+    --weight-h5: 700;
+
+    --font-h6: 1rem;
+    --leading-h6: 1.5rem;
+    --weight-h6: 700;
+
+    --font-p: 1rem;
+    --leading-p: 1.5rem;
+    --tracking-p: 0.2px;
+    --weight-p: 400;
+
+    --font-caption: 0.75rem;
+    --leading-caption: 1rem;
+    --tracking-caption: 0.2px;
+    --weight-caption: 700;
+
+    /* Colors: Primary */
+    --color-primary-dark: #092516;
+    --color-primary: #00652E;
+    --color-primary-light: #B7D333;
+
+    /* Colors: Secondary */
+    --color-secondary-dark: #B69000;
+    --color-secondary: #FFCA05;
+    --color-secondary-light: #FFEA9E;
+
+    /* Colors: Tertiary */
+    --color-tertiary-dark: #005EB8;
+    --color-tertiary: #0085CB;
+    --color-tertiary-light: #5EC2F7;
+
+    /* Colors: Neutral */
+    --color-neutral-900: #09090a;
+    --color-neutral-800: #101013;
+    --color-neutral-700: #252329;
+    --color-neutral-500: #46454a;
+    --color-neutral-200: #68676b;
+    --color-neutral-90: #8a898c;
+    --color-neutral-60: #acabad;
+    --color-neutral-40: #cccbcd;
+    --color-neutral-20: #ebebeb;
+    --color-neutral-5: #f5f5f5;
+    --color-neutral-dark: #252329;
+    --color-neutral: #46454a;
+    --color-neutral-light: #ebebeb;
+
+    /* Colors: Font */
+    --color-font: #000000;
+    --color-font-link: #005EB8;
+
+    /* Aspect Ratio */
+    --aspect-4-3: 4 / 3;
+    --aspect-3-4: 3 / 4;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading font-bold;
+}
+
+h1,
+.h1 {
+  @apply text-5xl leading-snug;
+
+  &m {
+    @apply text-4xl hyphens-auto;
+  }
+}
+
+h2,
+.h2 {
+  @apply text-4xl leading-snug;
+
+  &m {
+    @apply text-3xl hyphens-auto;
+  }
+}
+
+h3,
+.h3 {
+  @apply text-3xl leading-snug;
+
+  &m {
+    @apply text-2xl hyphens-auto;
+  }
+}
+
+h4,
+.h4 {
+  @apply text-2xl leading-snug;
+
+  &m {
+    @apply text-xl hyphens-auto;
+  }
+}
+
+h5,
+.h5 {
+  @apply text-xl font-normal leading-snug;
+
+  &m {
+    @apply text-lg hyphens-auto;
+  }
+}
+
+h6,
+.h6 {
+  @apply text-lg font-normal leading-snug;
+
+  &m {
+    @apply text-base hyphens-auto;
+  }
+}
+
+body {
+  @apply font-body font-normal;
+}
+
+address,
+dl,
+fieldset,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+ol,
+p,
+pre,
+table,
+ul {
+  @apply m-0 leading-[1.75];
+}
+
+.rich-text-link {
+  @apply text-tertiary underline font-bold;
+}
+
+.container {
+    @apply mx-auto max-sm:px-4
+}
