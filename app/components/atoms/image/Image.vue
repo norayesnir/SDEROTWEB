@@ -11,8 +11,6 @@ const props = withDefaults(defineProps<AtomsImageProps>(), {
 
 const config = useRuntimeConfig();
 
-const image = useRelationshipField(toRef(props, "image"));
-
 const root = ref<HTMLImageElement | null>(null);
 const emit = defineEmits(["load"]);
 const hasLoaded = ref(false);

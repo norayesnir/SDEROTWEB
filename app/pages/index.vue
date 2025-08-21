@@ -1,18 +1,13 @@
 <script setup lang="ts">
-const { pages, pending } = await usePages();
+const { data } = usePage();
 
-const currentPage = computed(() => pages.value?.filter(p => p.slug === 'home')?.[0]);
-
-const blocks = computed(() => currentPage.value?.fields.blocks);
+const blocks = computed(() => data.value?.blocks);
 </script>
 
 <template>
     <div>
-        <template v-if="!pending">
-            <template v-for="block in blocks" :key="block?.id">
-                <component :is="`blocks-${block?.blockType}`" :data="block" />
-            </template>
+        <template v-for="block in blocks" :key="block?.id">
+            <component :is="`blocks-${block?.blockType}`" v-if="block?.blockType" :data="block" />
         </template>
-        <div v-else class="container">Loading...</div>
     </div>
 </template>

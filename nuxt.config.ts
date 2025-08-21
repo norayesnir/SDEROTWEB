@@ -1,4 +1,4 @@
-import { resolve } from "path";
+import { resolve } from "node:path";
 import tailwindcss from '@tailwindcss/vite';
 
 const {
@@ -7,8 +7,6 @@ const {
     SITE_URL,
     PAYLOAD_SERVER_URL,
     PAYLOAD_API_ROUTE,
-    BLOB_READ_WRITE_TOKEN,
-    BLOB_BASE_URL
 } = process.env;
 
 const isDev = NODE_ENV !== "production";
@@ -29,20 +27,9 @@ export default defineNuxtConfig({
         plugins: [
             tailwindcss()
         ],
-        define: {
-            'process.env.NODE_ENV': JSON.stringify('production'),
-        },
     },
 
     css: ["~/assets/styles/styles.css"],
-
-    components: [
-        {
-            path: "@/components",
-            global: true,
-        },
-    ],
-
 
     alias: {
         "#payload/types": resolve(__dirname, "./payload-types.ts"),
@@ -57,6 +44,21 @@ export default defineNuxtConfig({
             language: "nl-NL",
             isDev,
         },
+    },
+
+    nitro: {
+        preset: 'node-server',
+    },
+
+    routeRules: {
+        '/api/**': {
+            proxy: `${PAYLOAD_SERVER_URL}${PAYLOAD_API_ROUTE}/**`,
+            cors: true
+        },
+        '/admin/**': {
+            proxy: `${PAYLOAD_SERVER_URL}/admin/**`,
+            cors: true
+        }
     },
 
     build: {

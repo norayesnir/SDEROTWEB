@@ -5,8 +5,6 @@ const navigationMenuStore = useNavigationMenuStore();
 const props = defineProps<{ title: string, item: any }>();
 
 const closeExpand = inject<() => void>("closeExpand", () => {});
-
-const to = computed(() => { return props.item.referenceToPage.route === '/home' ? '/' : props.item.referenceToPage.route })
 </script>
 
 <template>
@@ -22,7 +20,7 @@ const to = computed(() => { return props.item.referenceToPage.route === '/home' 
   <NuxtLink
     v-else-if="item.referenceToPage.route"
     class="flex gap-1 px-2 py-1 w-fit transition-colors duration-200 text-font font-normal border-black hover:pb-[2px] hover:border-b-2 has-[.router-link-active]:border-b-1 has-[.router-link-active]:pb-[2px]"
-    :to="to"
+    :to="item.referenceToPage.route"
     @click="[closeExpand, navigationMenuStore.close()]"
   >
     <Icon

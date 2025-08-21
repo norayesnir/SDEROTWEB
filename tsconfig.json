@@ -1,5 +1,6 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
   "files": [],
   "references": [
     {
@@ -17,9 +18,26 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModulleSyntax": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnchecdkedSideEffectImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitOverride": true,
+    "module": "preserve",
+    "noEmit": true,
     "paths": {
       "@/*": ["app/*"],
       "@/stores/*": ["app/stores/*"]
-    }
+    },
+    "types": ["@types/node"]
   }
 }

@@ -11,7 +11,6 @@
     "copy:types": "cp ../sderot-cms/src/payload-types.ts ./"
   },
   "dependencies": {
-    "@iconify-json/material-symbols": "^1.2.31",
     "@nuxt/eslint": "1.8.0",
     "@nuxt/fonts": "0.11.4",
     "@nuxt/icon": "1.15.0",
