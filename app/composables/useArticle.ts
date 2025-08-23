@@ -1,22 +1,18 @@
-import type { Article } from '#payload/types';
 import { useRoute } from 'vue-router';
-import { computed } from 'vue';
+import { useArticlesStore } from '~/stores/useArticles';
+import { useFetchArticles } from '~/composables/fetchArticles';
+import type { Article } from '#payload/types';
 
-export function useArticle() {
-    const route = useRoute();
-    const { data: response, pending } = useArticles();
-    console.log(response.value);
+export const useArticle = (customBlogSlug?: string, customArticleSlug?: string) => {
+  const route = useRoute();
+  const blogSlug = customBlogSlug || (route.params.blog as string || '');
+  const articleSlug = customArticleSlug || (Array.isArray(route.params.article) ? route.params.article.join('/') : (route.params.article as string || ''));
+  const store = useArticlesStore();
+  const { error, pending } = useFetchArticles();
 
-    const currentArticle = computed(() => {
-        const raw = route.params.slug;
-        return Array.isArray(raw) ? raw[0] : raw;
-    });
+  const article = computed(() => store.articles.find(a => a.slug === articleSlug && a.blog?.slug === blogSlug));
 
-    const articles = computed(() => response.value || []);
+  watch(store.articles, () => console.log('Article:', article.value?.slug), { immediate: true });
 
-    const data = computed(() =>
-        articles.value.filter((article: Article) => article?.slug === currentArticle.value)[0]
-    );
-
-    return { data, pending };
-}
+  return { article, error, pending };
+};

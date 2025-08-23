@@ -1,21 +1,38 @@
 <script setup lang="ts">
-definePageMeta({
-    key: (route) => route.params.blog || 'default'
-})
+import { navigateTo } from '#app';
 
-const { data } = usePage();
+const route = useRoute();
+const slug = route.params.blog as string;
 
-const blocks = computed(() => data.value.blocks ?? [])
+const { blog, articles, pending, error } = useBlog();
+const { data: page } = usePage(slug);
+
+watch(pending, (newPending) => {
+  if (!newPending) {
+    if (blog.value) {
+      // Stay for archive
+      if (!blog.value.blocks?.length) navigateTo('/404');
+    } else if (page.value) {
+      // Render as page (use existing logic)
+    } else {
+      navigateTo('/404');
+    }
+  }
+}, { immediate: true });
 </script>
 
 <template>
-    <div>
-        <template v-if="blocks.length">
-            <template v-for="block in blocks" :key="block?.id">
-                <component :is="`blocks-${block?.blockType}`" :data="block" />
-            </template>
-        </template>
-
-        <OrganismsArticles />
-    </div>
+    <ClientOnly>
+  <div v-if="blog">
+      <template v-for="block in blog.blocks" :key="block.id">
+        <Component :is="`blocks-${block.blockType}`" :data="block" />
+      </template>
+    <OrganismsArticles :articles="articles" :blogSlug="slug" />
+  </div>
+  <div v-else-if="page">
+      <template v-for="block in page.blocks" :key="block.id">
+        <Component :is="`blocks-${block.blockType}`" :data="block" />
+      </template>
+  </div>
+    </ClientOnly>
 </template>

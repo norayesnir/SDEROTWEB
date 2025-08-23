@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-	import type { MenuItem } from "#payload/types";
+import type { MenuItem } from "#payload/types";
 
-    defineProps<MenuItem>();
+defineProps<MenuItem>();
 </script>
 
 <template>
 	<NavigationMenuItemDefault
 		v-if="template === 'Default'"
-		:title="title"
+        :title="title"
         :item="default"
 	/>
 	<NavigationMenuItemExpandable

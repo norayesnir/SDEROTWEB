@@ -22,7 +22,7 @@ export function useCollection<T>(collection: string, options: Options = {}) {
     if (options?.draft !== undefined) query.draft = String(options.draft);
     if (options?.locale) query.locale = options.locale;
     if (options?.limit !== undefined) query.limit = String(options.limit);
-    if (options?.draft !== undefined) query.trash = String(options.trash);
+    if (options?.trash !== undefined) query.trash = String(options.trash);
 
     const qs = new URLSearchParams(query).toString();
 
@@ -30,6 +30,5 @@ export function useCollection<T>(collection: string, options: Options = {}) {
         url += `?${qs}`;
     }
 
-    return useFetch<T>(url);
+    return useAsyncData<T>(`collection-${collection}-${options.id || ''}`, () => $fetch(url));
 }
-

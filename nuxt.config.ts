@@ -23,6 +23,10 @@ export default defineNuxtConfig({
         "@nuxt/icon",
     ],
 
+    icon: {
+        provider: 'server'
+    },
+
     vite: {
         plugins: [
             tailwindcss()
@@ -60,7 +64,7 @@ export default defineNuxtConfig({
             cors: true
         }
     },
-
+    
     build: {
         transpile: ["ts-invariant/process"],
     },

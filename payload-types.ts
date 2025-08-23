@@ -80,7 +80,7 @@ export interface Config {
   blocks: {};
   collections: {
     articles: Article;
-    blogs: Blogs;
+    blogs: Blog;
     buttons: Button;
     categories: Categories;
     images: Image;
@@ -163,7 +163,7 @@ export interface Article {
   /**
    * Select the blog this article belongs to.
    */
-  blog?: (number | null) | Blogs;
+  blog?: (number | null) | Blog;
   excerpt?: string | null;
   featuredImage?: (number | null) | Image;
   categories?: (number | Categories)[] | null;
@@ -176,7 +176,7 @@ export interface Article {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "blogs".
  */
-export interface Blogs {
+export interface Blog {
   id: number;
   /**
    * The interface title will be displayed in the dashboard. Give it a unique name for easy identification.
@@ -684,7 +684,15 @@ export interface MenuItem {
      * Check this box if the link is external
      */
     externalLink?: boolean | null;
-    referenceToPage?: (number | null) | Page;
+    referenceToPage?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'blogs';
+          value: number | Blog;
+        } | null);
     externalUrl?: string | null;
     /**
      * Check this box if the link should open in a new tab
@@ -742,7 +750,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'blogs';
-        value: number | Blogs;
+        value: number | Blog;
       } | null)
     | ({
         relationTo: 'buttons';
