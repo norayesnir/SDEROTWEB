@@ -57,11 +57,7 @@ const closeExpand = inject<() => void>("closeExpand", () => {});
     <Icon
       v-if="item.icon.name"
       class="mt-[3px]"
-      :name="
-        'material-symbols:' +
-        item.icon.name.replace(/_/g, '-') +
-        '-outline-rounded'
-      "
+      :name="item.icon.name.replace(/_/g, '-')"
     />
     {{ title }}
     <span class="sr-only">{{ title }} Route</span>

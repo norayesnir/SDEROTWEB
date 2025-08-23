@@ -23,7 +23,7 @@ const to = computed(() => {
             props.typeGroup?.type ? `btn-${props.typeGroup.type}` : 'btn-filled',
             icon?.right ? 'flex-row-reverse' : 'flex-row',
         ]">
-        <LazyIcon :name="`material-symbols:${icon?.name}`" />
+        <Icon :name="icon?.name" />
         {{ title }}
     </NuxtLink>
 </template>

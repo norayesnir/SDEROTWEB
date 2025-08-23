@@ -32,7 +32,7 @@
 	>
 		<Icon
 			v-if="category.icon"
-			:name="`material-symbols:${category.icon?.name?.replace(/[\s\-_]+/g, '-')}-outline`"
+			:name="`${category.icon?.name?.replace(/[\s\-_]+/g, '-')}`"
 			class="text-primary"
 		/>
 		<span class="text-xs">{{ category.label }}</span>

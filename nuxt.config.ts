@@ -24,7 +24,8 @@ export default defineNuxtConfig({
     ],
 
     icon: {
-        provider: 'server'
+        provider: 'iconify',
+        serverBundle: false
     },
 
     vite: {
