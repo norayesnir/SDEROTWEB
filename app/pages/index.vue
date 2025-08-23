@@ -19,7 +19,6 @@ watch(pending, (newPending) => {
         <Suspense>
             <ClientOnly>
                 <template v-for="block in blocks" :key="block?.id">
-                    {{ block?.blockType }}
                     <Component
                         :is="`blocks-${block?.blockType}`"
                         v-show="block?.blockType" 
