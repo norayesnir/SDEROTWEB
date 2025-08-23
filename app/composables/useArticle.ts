@@ -12,7 +12,5 @@ export const useArticle = (customBlogSlug?: string, customArticleSlug?: string) 
 
   const article = computed(() => store.articles.find(a => a.slug === articleSlug && a.blog?.slug === blogSlug));
 
-  watch(store.articles, () => console.log('Article:', article.value?.slug), { immediate: true });
-
   return { article, error, pending };
 };

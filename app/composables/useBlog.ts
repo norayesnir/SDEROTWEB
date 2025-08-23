@@ -18,8 +18,5 @@ export const useBlog = (customSlug?: string) => {
   const error = computed(() => blogsError.value || articlesError.value);
   const pending = computed(() => blogsPending.value || articlesPending.value);
 
-  watch(blogsStore.blogs, () => console.log('Blogs:', blogsStore.blogs.map(b => b.slug)), { immediate: true });
-  watch(articlesStore.articles, () => console.log('Articles for', slug, ':', articles.value.map(a => a.slug)), { immediate: true });
-
   return { blog, articles, error, pending };
 };

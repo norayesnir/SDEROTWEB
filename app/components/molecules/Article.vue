@@ -9,8 +9,6 @@ const props = defineProps<{
 
 const article = ref(props.article);
 
-console.log(props);
-
 const formattedDate = computed(() => {
   const options: Intl.DateTimeFormatOptions = {
     weekday: "short",

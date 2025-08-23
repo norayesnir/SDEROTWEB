@@ -12,7 +12,6 @@ const { data: page } = usePage(fullSlug);
 watch(pending, (newPending) => {
   if (!newPending) {
     if (article.value) {
-      // Stay for article
       if (!article.value.blocks?.length) navigateTo('/404'); // If needed
     } else if (page.value) {
       // Render as page
@@ -24,9 +23,19 @@ watch(pending, (newPending) => {
 </script>
 
 <template>
+  <div v-if="article">
+    <ClientOnly>
+      <template v-for="block in article.blocks" :key="block.id">
+        <Component :is="`blocks-${block.blockType}`" :data="block" />
+      </template>
+    </ClientOnly>
+  </div>
+  <div v-else-if="page">
+    <!-- Existing page render -->
     <ClientOnly>
       <template v-for="block in page.blocks" :key="block.id">
         <Component :is="`blocks-${block.blockType}`" :data="block" />
       </template>
     </ClientOnly>
+  </div>
 </template>
